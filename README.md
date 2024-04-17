@@ -1,1 +1,1 @@
-# water_potability
+# Water_Quality
