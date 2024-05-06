@@ -12,7 +12,7 @@ import seaborn as sns
 st.set_page_config(
     page_title='water quality',
     page_icon=':gem:',
-    initial_sidebar_state='collapsed'  # Collapsed sidebar
+    initial_sidebar_state='auto'  # Collapsed sidebar
 )
 
 def load_lottie(url): # test url if you want to use your own lottie file 'valid url' or 'invalid url'
@@ -24,12 +24,13 @@ model=joblib.load(open("water_quality",'rb'))
 
 def predict(ph,Hardness,Solids,Chloramines,Sulfate,Conductivity,Organic_carbon,Trihalomethanes,Turbidity):
 
-    features = np.array([ph,Hardness,Solids,Chloramines,Sulfate,Conductivity,Organic_carbon,Trihalomethanes,Turbidity]).reshape(1, -1)
-    prediction = model.predict(features)
+    A= np.array([ph,Hardness,Solids,Chloramines,Sulfate,Conductivity,Organic_carbon,Trihalomethanes,Turbidity]).reshape(1,-1)
+    
+    prediction = model.predict(A)
     return prediction
 with st.sidebar:
     choose = option_menu(None, ["Home", "Graphs"],
-                         icons=['house', 'kanban', 'book','person lines fill'],
+                         icons=['house', 'kanban','person lines fill'],
                          menu_icon="app-indicator", default_index=0,
                          styles={
         "container": {"padding": "5!important", "background-color": "#fafafa"},
@@ -45,25 +46,23 @@ if choose=='Home':
        st.subheader('Enter your water quality details')
        # User input
        ph = st.number_input("Enter ph value: ",min_value=0,max_value=14)
-       Hardness = st.number_input("Enter Hardness value: ",min_value=47,max_value=323)
-       Solids = st.number_input("Enter Solids value: ",min_value=320,max_value=61227)
+       Hardness = st.number_input("Enter Hardness value: ",min_value=0,max_value=323)
+       Solids = st.number_input("Enter Solids value: ",min_value=0,max_value=61227)
        Chloramines= st.number_input("Enter Chloramines value: ",min_value=0,max_value=13)
-       Sulfate = st.number_input("Enter Sulfate value: ",min_value=129,max_value=481)
-       Conductivity = st.number_input("Enter Conductivity value: ",min_value=181,max_value=753)
-       Organic_carbon = st.number_input("Enter Organic_carbon value: ",min_value=2,max_value=28)
+       Sulfate = st.number_input("Enter Sulfate value: ",min_value=0,max_value=481)
+       Conductivity = st.number_input("Enter Conductivity value: ",min_value=0,max_value=753)
+       Organic_carbon = st.number_input("Enter Organic_carbon value: ",min_value=0,max_value=28)
        Trihalomethanes = st.number_input("Enter Trihalomethanes value: ",min_value=0,max_value=124)
-       Turbidity = st.number_input("Enter Turbidity value: ",min_value=1,max_value=6)
+       Turbidity = st.number_input("Enter Turbidity value: ",min_value=0,max_value=6)
        # Predict the cluster
        sample_prediction = predict(ph,Hardness,Solids,Chloramines,Sulfate,Conductivity,Organic_carbon,Trihalomethanes,Turbidity)
 
        if st.button("Predict"):
         if sample_prediction == 0:
-            st.warning("Predicted Salary: Low")
-            st.write("This indicates a low salary.")
+            #st.write("## Predicted Status : ", result)
+            st.write('### WATER POLLUTED')
         elif sample_prediction == 1:
-            st.success("Predicted Salary: High")
-            st.write("This indicates a high salary.")
-            st.balloons()
+            st.write('WATTER NOT POLLUTED')
               
  
 
@@ -81,13 +80,12 @@ elif choose == 'Graphs':
     st.image("correlation heatmap.png")
     st.write("## scatterplot Graph")
     st.image("scatterplot.png")
-    st.write("## Age period Vs Gender Graph")
-    st.image("output5.png")
-    st.write("## Age Period Vs Income Graph")
-    st.image("output6.png")
-    st.write("## Workclass Vs Income Graph")
+    st.write("## histplot Graph")
+    st.image("histplot.png")
+    
     
     data = pd.read_csv('water_potability.csv')
     # Create a DataFrame
     df = pd.DataFrame(data)
     
+
