@@ -88,4 +88,3 @@ elif choose == 'Graphs':
     # Create a DataFrame
     df = pd.DataFrame(data)
     
-
