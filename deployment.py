@@ -45,15 +45,15 @@ if choose=='Home':
        st.write('---')
        st.subheader('Enter your water quality details')
        # User input
-       ph = st.number_input("Enter ph value: ",min_value=0,max_value=14)
-       Hardness = st.number_input("Enter Hardness value: ",min_value=0,max_value=323)
-       Solids = st.number_input("Enter Solids value: ",min_value=0,max_value=61227)
-       Chloramines= st.number_input("Enter Chloramines value: ",min_value=0,max_value=13)
-       Sulfate = st.number_input("Enter Sulfate value: ",min_value=0,max_value=481)
-       Conductivity = st.number_input("Enter Conductivity value: ",min_value=0,max_value=753)
-       Organic_carbon = st.number_input("Enter Organic_carbon value: ",min_value=0,max_value=28)
-       Trihalomethanes = st.number_input("Enter Trihalomethanes value: ",min_value=0,max_value=124)
-       Turbidity = st.number_input("Enter Turbidity value: ",min_value=0,max_value=6)
+       ph = st.number_input("Enter ph value: ",min_value=0.0,max_value=14.0, format="%.6f")
+       Hardness = st.number_input("Enter Hardness value: ",min_value=0.0,max_value=323.0, format="%.6f")
+       Solids = st.number_input("Enter Solids value: ",min_value=0.0,max_value=61227.0, format="%.6f")
+       Chloramines= st.number_input("Enter Chloramines value: ",min_value=0.0,max_value=13.0, format="%.6f")
+       Sulfate = st.number_input("Enter Sulfate value: ",min_value=0.0,max_value=481.0, format="%.6f")
+       Conductivity = st.number_input("Enter Conductivity value: ",min_value=0.0,max_value=753.0, format="%.6f")
+       Organic_carbon = st.number_input("Enter Organic_carbon value: ",min_value=0.0,max_value=28.0, format="%.6f")
+       Trihalomethanes = st.number_input("Enter Trihalomethanes value: ",min_value=0.0,max_value=124.0, format="%.6f")
+       Turbidity = st.number_input("Enter Turbidity value: ",min_value=0.0,max_value=6.0, format="%.6f")
        # Predict the cluster
        sample_prediction = predict(ph,Hardness,Solids,Chloramines,Sulfate,Conductivity,Organic_carbon,Trihalomethanes,Turbidity)
 
@@ -62,7 +62,7 @@ if choose=='Home':
             #st.write("## Predicted Status : ", result)
             st.write('### WATER POLLUTED')
         elif sample_prediction == 1:
-            st.write('WATTER NOT POLLUTED')
+            st.write(' ### WATTER NOT POLLUTED')
               
  
 
