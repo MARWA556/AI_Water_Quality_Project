@@ -10,6 +10,15 @@ import PIL as Image
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+import json
+
+# Load accuracies from the JSON file
+with open('accuracies.json', 'r') as f:
+    accuracies = json.load(f)
+
+
+
+
 model_image_matrix = {
     "Logistic Regression": "assets\\LR_matrix.png",
     "Decision Tree": "assets\\DT_matrix.png",
@@ -20,19 +29,6 @@ model_image_matrix = {
     "ada Boost classifier": "assets\\ADA_matrix.png",
     "XGBOOST": "assets\\XGB_matrix.png",
     "Naive": "",
-}
-
-accuracies = {
-    "None": 0.0,
-    "Logistic Regression": 0.62*100 ,
-    "Decision Tree": 0.72*100,
-    "Random Forest": 0.8*100,
-    "Hist Gradient Boost": 0.78*100,
-    "KNN": 0.6*100,
-    "SVM": 0.62*100,
-    "ada Boost classifier": 0.74*100,
-    "XGBOOST": 0.82*100,
-    "Naive" :0.61*100
 }
     
 
